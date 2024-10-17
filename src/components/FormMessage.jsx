@@ -21,15 +21,15 @@ export const FormMessage = ({ isDone, setIsDone, emailList, setEmailList }) => {
     if (subject && content) {
       const body = {
         sender: {
-          name: "Matt",
-          email: "matiselt@outlook.es",
+          name: process.env.NEXT_PUBLIC_NAME,
+          email: process.env.NEXT_PUBLIC_EMAIL,
         },
         subject,
         content,
         to: emailList,
       };
 
-      const res = await fetch("http://localhost:3001/email", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URI}/email`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
